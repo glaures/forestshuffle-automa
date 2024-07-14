@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./iconx/favicon.ico">
+    <link rel="apple-touch-icon" href="./iconx/apple-touch-icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        let langSetting = (navigator.language || navigator.userLanguage).split('-')[0];
+        const lang = ['de', 'en'].indexOf(langSetting) > 0 ? langSetting : 'en'
+        function loadManifest() {
+            const link = document.createElement('link');
+            link.rel = 'manifest';
+            link.href = `./manifest-${lang}.json`;
+            document.head.appendChild(link);
+        }
+        loadManifest();
+
+        let touchStartY = 0;
+        let preventPullToRefresh = false;
+
+        document.addEventListener('touchstart', function (event) {
+            if (event.touches.length !== 1) return;
+            touchStartY = event.touches[0].clientY;
+            preventPullToRefresh = window.scrollY === 0;
+        }, {passive: false});
+
+        document.addEventListener('touchmove', function (event) {
+            const touchCurrentY = event.touches[0].clientY;
+            const touchDeltaY = touchCurrentY - touchStartY;
+
+            if (preventPullToRefresh && touchDeltaY > 0) {
+                event.preventDefault();
+            }
+        }, {passive: false});
+
+        // prevent dbclick zooming
+        document.addEventListener('dblclick', function(event) {
+            event.preventDefault();
+        });
+    </script>
+  <script type="module" crossorigin src="/forestshuffle-automa/assets/index-CuJqUbtj.js"></script>
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/@popperjs-WhmJkuoZ.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/bootstrap-DGAcMehd.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/register-service-worker-TYP_X6yW.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/@vue-DNa2W_E9.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/vue-router-C8-br-nJ.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/vue-toastification-DwJGtKtt.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/vue-gtag-AKVuPKC0.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/pinia-Bqr1RidR.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/@fortawesome-Bo3_5Ovt.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/@intlify-Y34EtYYP.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/vue-i18n-omMRQDls.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/hookable-B8xFkYCm.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/unhead-C42ODE28.js">
+  <link rel="modulepreload" crossorigin href="/forestshuffle-automa/assets/@unhead-C1HMmZPc.js">
+  <link rel="stylesheet" crossorigin href="/forestshuffle-automa/assets/bootstrap-DUEfxN0n.css">
+  <link rel="stylesheet" crossorigin href="/forestshuffle-automa/assets/vue-toastification-C2Rkk2Fc.css">
+  <link rel="stylesheet" crossorigin href="/forestshuffle-automa/assets/index-Cu7PCR7I.css">
+</head>
+<body>
+<div id="app"></div>
+</body>
+</html>
